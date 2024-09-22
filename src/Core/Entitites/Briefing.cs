@@ -1,6 +1,6 @@
-using Domain.Enums;
+using Core.Enums;
 
-namespace Domain.Entitites;
+namespace Core.Entitites;
 
 public class Briefing
 {

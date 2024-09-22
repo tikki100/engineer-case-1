@@ -1,4 +1,4 @@
-namespace Domain.Entitites;
+namespace Core.Entitites;
 
 public class ContentDistribution
 {

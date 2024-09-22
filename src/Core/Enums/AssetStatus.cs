@@ -1,6 +1,6 @@
-namespace Domain.Enums;
+namespace Core.Enums;
 
-public enum BriefingStatus
+public enum AssetStatus
 {
     Unknown,
     Draft,
