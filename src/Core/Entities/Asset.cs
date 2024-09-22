@@ -16,5 +16,5 @@ public class Asset
     public string UserName { get; set; } = string.Empty;
     public string Comments { get; set; } = string.Empty;
     public string Preview { get; set; } = string.Empty;
-    public AssetStatus Status { get; set; }
+    public AssetStatus Status { get; set; } = AssetStatus.Unknown;
 }

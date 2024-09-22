@@ -1,53 +1,54 @@
 using Core.Criterias;
 using Core.Entities;
 using Core.Interfaces;
+using System.Linq;
 
-namespace Core.Services.MockServices;
+namespace Core.Services.Mock;
 
 public class MockAssetService : IAssetService
 {
     public Task<Asset> CreateAssetAsync(Asset asset)
     {
-        throw new NotImplementedException();
+        return Task.FromResult(new Asset());
     }
 
     public Task<bool> DeleteAssetAsync(string id)
     {
-        throw new NotImplementedException();
+        return Task.FromResult(true);
     }
 
     public Task<Stream> DownloadAssetAsync(string id)
     {
-        throw new NotImplementedException();
+        return Task.FromResult(new MemoryStream() as Stream);
     }
 
     public Task<IAsyncEnumerable<Asset>> GetAllAssetsAsync(int skip, int take)
     {
-        throw new NotImplementedException();
+        return Task.FromResult(Array.Empty<Asset>().ToAsyncEnumerable());
     }
 
-    public Task<IAsyncEnumerable<Asset>> GetAssetByBriefingIdAsync(string briefingId)
+    public Task<Asset> GetAssetByBriefingIdAsync(string briefingId)
     {
-        throw new NotImplementedException();
+        return Task.FromResult(new Asset());
     }
 
-    public Task<Asset?> GetAssetByIdAsync(string id)
+    public Task<Asset> GetAssetByIdAsync(string id)
     {
-        throw new NotImplementedException();
+        return Task.FromResult<Asset>(null);
     }
 
     public Task<IAsyncEnumerable<Asset>> GetAssetsByCriteriaAsync(AssetCriteria criteria, int skip, int take)
     {
-        throw new NotImplementedException();
+        return Task.FromResult(Array.Empty<Asset>().ToAsyncEnumerable());
     }
 
     public Task<IAsyncEnumerable<Asset>> GetAssetsByIdsAsync(ICollection<string> ids)
     {
-        throw new NotImplementedException();
+        return Task.FromResult(Array.Empty<Asset>().ToAsyncEnumerable());
     }
 
     public Task<Asset> UpdateAssetAsync(Asset asset)
     {
-        throw new NotImplementedException();
+        return Task.FromResult(new Asset());
     }
 }
