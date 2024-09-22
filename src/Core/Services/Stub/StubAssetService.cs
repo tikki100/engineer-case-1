@@ -1,11 +1,22 @@
+using Microsoft.Extensions.Logging;
+
 using Core.Criterias;
 using Core.Entities;
 using Core.Interfaces;
 
-namespace Core.Services.MockServices;
+using Infrastructure.Interfaces.Repositories;
 
-public class MockAssetService : IAssetService
+namespace Core.Services.Stub;
+
+public class StubAssetService : IAssetService
 {
+    private readonly ILogger<StubAssetService> _logger;
+    private readonly IAssetDownloadRepository _assetDownloadRepository;
+    public StubAssetService(ILogger<StubAssetService> logger, IAssetDownloadRepository assetDownloadRepository) {
+        _logger = logger;
+        _assetDownloadRepository = assetDownloadRepository;
+
+    }
     public Task<Asset> CreateAssetAsync(Asset asset)
     {
         throw new NotImplementedException();
@@ -16,9 +27,9 @@ public class MockAssetService : IAssetService
         throw new NotImplementedException();
     }
 
-    public Task<Stream> DownloadAssetAsync(string id)
+    public async Task<Stream> DownloadAssetAsync(string id)
     {
-        throw new NotImplementedException();
+        return await _assetDownloadRepository.DownloadAsync(id);
     }
 
     public Task<IAsyncEnumerable<Asset>> GetAllAssetsAsync(int skip, int take)
