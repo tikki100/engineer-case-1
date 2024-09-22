@@ -6,14 +6,15 @@ namespace Core.Interfaces;
 
 public interface IBriefingService
 {
-    Task<IAsyncEnumerable<Briefing>> GetBriefingsAsync(BriefingCriteria criteria);
 
-    Task<Briefing> GetBriefingByIdAsync(int id);
+    Task<Briefing?> GetBriefingByIdAsync(string id);
+    Task<IAsyncEnumerable<Briefing>> GetBriefingsByCriteriaAsync(BriefingCriteria criteria);
+
 
     Task<Briefing> CreateBriefingAsync(Briefing briefing);
 
     Task<Briefing> UpdateBriefingAsync(Briefing briefing);
-    Task<bool> DeleteBriefingAsync(int id);
+    Task<bool> DeleteBriefingAsync(string id);
     
-    Task<bool> UpdateBriefingStatusAsync(int briefingId, BriefingStatus status);
+    Task<bool> UpdateBriefingStatusAsync(string briefingId, BriefingStatus status);
 }
