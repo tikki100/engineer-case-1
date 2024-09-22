@@ -1,6 +1,6 @@
 using Core.Enums;
 
-namespace Core.Entitites;
+namespace Core.Entities;
 
 public class Briefing
 {
