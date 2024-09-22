@@ -18,5 +18,7 @@ public interface IAssetService
 
     Task<bool> DeleteAssetAsync(string id);
 
+    Task<Stream> DownloadAssetAsync(string id);
+
      
 }

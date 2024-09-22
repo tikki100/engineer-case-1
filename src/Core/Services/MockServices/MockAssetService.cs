@@ -21,6 +21,11 @@ public class MockAssetService : IAssetService
         throw new NotImplementedException();
     }
 
+    public Task<IAsyncEnumerable<Asset>> GetAssetByBriefingIdAsync(string briefingId)
+    {
+        throw new NotImplementedException();
+    }
+
     public Task<Asset?> GetAssetByIdAsync(string id)
     {
         throw new NotImplementedException();
@@ -31,7 +36,7 @@ public class MockAssetService : IAssetService
         throw new NotImplementedException();
     }
 
-    public Task<IAsyncEnumerable<Asset?>> GetAssetsByIdsAsync(ICollection<string> ids)
+    public Task<IAsyncEnumerable<Asset>> GetAssetsByIdsAsync(ICollection<string> ids)
     {
         throw new NotImplementedException();
     }
