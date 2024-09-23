@@ -1,4 +1,4 @@
-namespace Infrastructure.Interfaces.Repositories;
+namespace Core.Interfaces;
 
 public interface IAssetDownloadRepository
 {

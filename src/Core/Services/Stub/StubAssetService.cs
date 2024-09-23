@@ -4,8 +4,6 @@ using Core.Criterias;
 using Core.Entities;
 using Core.Interfaces;
 
-using Infrastructure.Interfaces.Repositories;
-
 namespace Core.Services.Stub;
 
 public class StubAssetService : IAssetService
@@ -17,6 +15,7 @@ public class StubAssetService : IAssetService
         _assetDownloadRepository = assetDownloadRepository;
 
     }
+
     public Task<Asset> CreateAssetAsync(Asset asset)
     {
         throw new NotImplementedException();
@@ -37,12 +36,12 @@ public class StubAssetService : IAssetService
         throw new NotImplementedException();
     }
 
-    public Task<IAsyncEnumerable<Asset>> GetAssetByBriefingIdAsync(string briefingId)
+    public Task<Asset> GetAssetByBriefingIdAsync(string briefingId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Asset?> GetAssetByIdAsync(string id)
+    public Task<Asset> GetAssetByIdAsync(string id)
     {
         throw new NotImplementedException();
     }

@@ -34,7 +34,7 @@ public class MockAssetService : IAssetService
 
     public Task<Asset> GetAssetByIdAsync(string id)
     {
-        return Task.FromResult<Asset>(null);
+        return Task.FromResult<Asset>(new Asset());
     }
 
     public Task<IAsyncEnumerable<Asset>> GetAssetsByCriteriaAsync(AssetCriteria criteria, int skip, int take)

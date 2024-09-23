@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
 
-using Infrastructure.Interfaces.Repositories;
+using Core.Interfaces;
 
 namespace Infrastructure.Repositories.Stub;
 
