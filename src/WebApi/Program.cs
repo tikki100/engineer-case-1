@@ -1,5 +1,5 @@
-using Core.Interfaces;
-using Core.Services.Stub;
+using System.Text.Json.Serialization;
+
 using Infrastructure.Data.Stub;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +8,11 @@ builder.Logging.AddConsole();
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });;
 builder.Services.AddHttpClient();
 
 builder.Services.AddCoreServices();
@@ -17,6 +21,11 @@ builder.Services.AddInfrastructureServices();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.Configure<RouteOptions>(options =>
+{
+   options.LowercaseUrls = true;
+});
 
 var app = builder.Build();
 
