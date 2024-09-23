@@ -22,9 +22,9 @@ public class MockAssetService : IAssetService
         return Task.FromResult(new MemoryStream() as Stream);
     }
 
-    public Task<IAsyncEnumerable<Asset>> GetAllAssetsAsync(int skip, int take)
+    public Task<ICollection<Asset>> GetAllAssetsAsync(int skip, int take)
     {
-        return Task.FromResult(Array.Empty<Asset>().ToAsyncEnumerable());
+        return Task.FromResult<ICollection<Asset>>(Array.Empty<Asset>());
     }
 
     public Task<Asset> GetAssetByBriefingIdAsync(string briefingId)
@@ -37,14 +37,14 @@ public class MockAssetService : IAssetService
         return Task.FromResult<Asset>(new Asset());
     }
 
-    public Task<IAsyncEnumerable<Asset>> GetAssetsByCriteriaAsync(AssetCriteria criteria, int skip, int take)
+    public Task<ICollection<Asset>> GetAssetsByCriteriaAsync(AssetCriteria criteria, int skip, int take)
     {
-        return Task.FromResult(Array.Empty<Asset>().ToAsyncEnumerable());
+        return Task.FromResult<ICollection<Asset>>(Array.Empty<Asset>());
     }
 
-    public Task<IAsyncEnumerable<Asset>> GetAssetsByIdsAsync(ICollection<string> ids)
+    public Task<ICollection<Asset>> GetAssetsByIdsAsync(ICollection<string> ids)
     {
-        return Task.FromResult(Array.Empty<Asset>().ToAsyncEnumerable());
+        return Task.FromResult<ICollection<Asset>>(Array.Empty<Asset>());
     }
 
     public Task<Asset> UpdateAssetAsync(Asset asset)

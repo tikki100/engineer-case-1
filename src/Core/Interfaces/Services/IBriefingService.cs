@@ -8,7 +8,7 @@ public interface IBriefingService
 {
 
     Task<Briefing?> GetBriefingByIdAsync(string id);
-    Task<IAsyncEnumerable<Briefing>> GetBriefingsByCriteriaAsync(BriefingCriteria criteria);
+    Task<ICollection<Briefing>> GetBriefingsByCriteriaAsync(BriefingCriteria criteria);
 
 
     Task<Briefing> CreateBriefingAsync(Briefing briefing);

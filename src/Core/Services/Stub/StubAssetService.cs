@@ -31,7 +31,7 @@ public class StubAssetService : IAssetService
         return await _assetDownloadRepository.DownloadAsync(id);
     }
 
-    public Task<IAsyncEnumerable<Asset>> GetAllAssetsAsync(int skip, int take)
+    public Task<ICollection<Asset>> GetAllAssetsAsync(int skip, int take)
     {
         throw new NotImplementedException();
     }
@@ -46,12 +46,12 @@ public class StubAssetService : IAssetService
         throw new NotImplementedException();
     }
 
-    public Task<IAsyncEnumerable<Asset>> GetAssetsByCriteriaAsync(AssetCriteria criteria, int skip, int take)
+    public Task<ICollection<Asset>> GetAssetsByCriteriaAsync(AssetCriteria criteria, int skip, int take)
     {
         throw new NotImplementedException();
     }
 
-    public Task<IAsyncEnumerable<Asset>> GetAssetsByIdsAsync(ICollection<string> ids)
+    public Task<ICollection<Asset>> GetAssetsByIdsAsync(ICollection<string> ids)
     {
         throw new NotImplementedException();
     }

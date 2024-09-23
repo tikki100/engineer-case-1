@@ -6,10 +6,10 @@ namespace Core.Interfaces;
 public interface IAssetService
 {
     Task<Asset> GetAssetByIdAsync(string id);
-    Task<IAsyncEnumerable<Asset>> GetAssetsByIdsAsync(ICollection<string> ids);
+    Task<ICollection<Asset>> GetAssetsByIdsAsync(ICollection<string> ids);
     
-    Task<IAsyncEnumerable<Asset>> GetAllAssetsAsync(int skip, int take);
-    Task<IAsyncEnumerable<Asset>> GetAssetsByCriteriaAsync(AssetCriteria criteria, int skip, int take);
+    Task<ICollection<Asset>> GetAllAssetsAsync(int skip, int take);
+    Task<ICollection<Asset>> GetAssetsByCriteriaAsync(AssetCriteria criteria, int skip, int take);
 
     Task<Asset> GetAssetByBriefingIdAsync(string briefingId);
 
