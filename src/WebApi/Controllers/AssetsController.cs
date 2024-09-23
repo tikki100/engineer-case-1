@@ -60,12 +60,14 @@ public class AssetsController : ControllerBase
             return BadRequest("Invalid asset id");
         }
 
+        var uppercaseId = id.ToUpperInvariant();
+
         try
         {
-            var asset = await _assetService.GetAssetByIdAsync(id);
+            var asset = await _assetService.GetAssetByIdAsync(uppercaseId);
             if (asset == null)
             {
-                return NotFound($"No asset found for ID {id}");
+                return NotFound($"No asset found for ID {uppercaseId}");
             }
 
             return Ok(asset);
@@ -87,15 +89,17 @@ public class AssetsController : ControllerBase
             return BadRequest("Invalid asset id");
         }
 
+        var uppercaseId = id.ToUpperInvariant();
+
         try
         {
-            var fileStream = await this._assetService.DownloadAssetAsync(id);
+            var fileStream = await this._assetService.DownloadAssetAsync(uppercaseId);
 
             return File(fileStream, "image/jpeg");
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"Unable to retrive asset filedata: {id}");
+            _logger.LogError(ex, $"Unable to retrive asset filedata: {uppercaseId}");
             return Problem("Unable to get the file");
         }
     }

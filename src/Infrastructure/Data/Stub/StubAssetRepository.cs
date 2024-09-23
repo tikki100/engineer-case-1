@@ -39,6 +39,10 @@ public class StubAssetRepository : IAssetRepository
 
     public Task<ICollection<Asset>> GetAssetsByIdsAsync(ICollection<string> ids)
     {
-        throw new NotImplementedException();
+        var assets = _dataStore.Assets
+            .Where(asset => ids.Contains(asset.AssetId))
+            .ToList();
+        
+        return Task.FromResult<ICollection<Asset>>(assets);
     }
 }

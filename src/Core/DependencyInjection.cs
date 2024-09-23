@@ -8,6 +8,7 @@ public static class DependencyInjection
     public static IServiceCollection AddCoreServices(this IServiceCollection services)
     {
         services.AddScoped<IAssetService, StubAssetService>();
+        services.AddScoped<IContentDistributionService, StubContentDistributionService>();
 
         return services;
     }

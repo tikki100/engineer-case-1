@@ -34,7 +34,12 @@ public class MockAssetService : IAssetService
 
     public Task<Asset?> GetAssetByIdAsync(string id)
     {
-        return Task.FromResult<Asset>(null);
+        return Task.FromResult<Asset?>(null);
+    }
+
+    public Task<ICollection<Asset>> GetAssetsByContentDistributionId(string contentId)
+    {
+        return Task.FromResult<ICollection<Asset>>(Array.Empty<Asset>());
     }
 
     public Task<ICollection<Asset>> GetAssetsByCriteriaAsync(AssetCriteria criteria, int skip, int take)

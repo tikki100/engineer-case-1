@@ -10,15 +10,18 @@ public class StubAssetService : IAssetService
 {
     private readonly ILogger<StubAssetService> _logger;
     private readonly IAssetDownloadRepository _assetDownloadRepository;
+    private readonly IContentDistributionService _contentDistributionService;
 
     private readonly IAssetRepository _assetRepository;
     public StubAssetService(ILogger<StubAssetService> logger, 
         IAssetDownloadRepository assetDownloadRepository,
-        IAssetRepository assetRepository) 
+        IAssetRepository assetRepository,
+        IContentDistributionService contentDistributionService) 
     {
         _logger = logger;
         _assetDownloadRepository = assetDownloadRepository;
         _assetRepository = assetRepository;
+        _contentDistributionService = contentDistributionService;
 
     }
 
@@ -50,6 +53,14 @@ public class StubAssetService : IAssetService
     public async Task<Asset?> GetAssetByIdAsync(string id)
     {
         return await _assetRepository.GetAssetByIdAsync(id);
+    }
+
+    public async Task<ICollection<Asset>> GetAssetsByContentDistributionId(string contentId)
+    {
+        var contentDistribution = await _contentDistributionService.GetContentDistributionByIdAsync(contentId);
+        var assetIds = contentDistribution?.Assets.Select(asset => asset.AssetId).ToList() ?? new List<string>();
+        return await _assetRepository.GetAssetsByIdsAsync(assetIds);
+
     }
 
     public async Task<ICollection<Asset>> GetAssetsByCriteriaAsync(AssetCriteria criteria, int skip, int take)

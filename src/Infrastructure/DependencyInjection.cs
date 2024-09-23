@@ -10,6 +10,7 @@ public static class DependencyInjection
     {
         services.AddScoped<IAssetDownloadRepository, StubAssetDownloadRepository>();
         services.AddScoped<IAssetRepository, StubAssetRepository>();
+        services.AddScoped<IContentDistributionRepository, StubContentDistributionRepository>();
         services.AddSingleton<IDataStore, InMemoryDataStore>();
 
         return services;

@@ -9,13 +9,19 @@ public class StubContentDistributionRepository : IContentDistributionRepository
 {
     private readonly ILogger _logger;
 
-    public StubContentDistributionRepository(ILogger<StubContentDistributionRepository> logger)
+    private readonly IDataStore _dataStore;
+
+    public StubContentDistributionRepository(ILogger<StubContentDistributionRepository> logger, IDataStore dataStore)
     {
         _logger = logger;
+        _dataStore = dataStore;
     }
 
-    public Task<ContentDistribution> GetContentDistributionByIdAsync(string id)
+    public Task<ContentDistribution?> GetContentDistributionByIdAsync(string id)
     {
-        throw new NotImplementedException();
+        var contentDistribution = _dataStore.ContentDistributions
+            .FirstOrDefault(contentDistribution => contentDistribution.ContentId == id);
+
+        return Task.FromResult(contentDistribution);
     }
 }

@@ -4,6 +4,6 @@ namespace Core.Interfaces;
 
 public interface IContentDistributionRepository
 {
-    Task<ContentDistribution> GetContentDistributionByIdAsync(string id);
+    Task<ContentDistribution?> GetContentDistributionByIdAsync(string id);
 
 }
