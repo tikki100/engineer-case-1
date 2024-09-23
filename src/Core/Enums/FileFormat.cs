@@ -2,6 +2,7 @@ namespace Core.Enums;
 
 public enum FileFormat
 {
+    Unknown,
     JPG,
     PNG,
     PDF,

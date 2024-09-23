@@ -9,7 +9,8 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
     {
         services.AddScoped<IAssetDownloadRepository, StubAssetDownloadRepository>();
-        services.AddSingleton<InMemoryDataStore>();
+        services.AddScoped<IAssetRepository, StubAssetRepository>();
+        services.AddSingleton<IDataStore, InMemoryDataStore>();
 
         return services;
     }

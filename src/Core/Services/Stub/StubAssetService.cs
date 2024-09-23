@@ -10,9 +10,15 @@ public class StubAssetService : IAssetService
 {
     private readonly ILogger<StubAssetService> _logger;
     private readonly IAssetDownloadRepository _assetDownloadRepository;
-    public StubAssetService(ILogger<StubAssetService> logger, IAssetDownloadRepository assetDownloadRepository) {
+
+    private readonly IAssetRepository _assetRepository;
+    public StubAssetService(ILogger<StubAssetService> logger, 
+        IAssetDownloadRepository assetDownloadRepository,
+        IAssetRepository assetRepository) 
+    {
         _logger = logger;
         _assetDownloadRepository = assetDownloadRepository;
+        _assetRepository = assetRepository;
 
     }
 
@@ -41,14 +47,14 @@ public class StubAssetService : IAssetService
         throw new NotImplementedException();
     }
 
-    public Task<Asset> GetAssetByIdAsync(string id)
+    public async Task<Asset?> GetAssetByIdAsync(string id)
     {
-        throw new NotImplementedException();
+        return await _assetRepository.GetAssetByIdAsync(id);
     }
 
-    public Task<ICollection<Asset>> GetAssetsByCriteriaAsync(AssetCriteria criteria, int skip, int take)
+    public async Task<ICollection<Asset>> GetAssetsByCriteriaAsync(AssetCriteria criteria, int skip, int take)
     {
-        throw new NotImplementedException();
+        return await _assetRepository.GetAssetsByCriteriaAsync(criteria, skip, take);
     }
 
     public Task<ICollection<Asset>> GetAssetsByIdsAsync(ICollection<string> ids)

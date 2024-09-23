@@ -32,9 +32,9 @@ public class MockAssetService : IAssetService
         return Task.FromResult(new Asset());
     }
 
-    public Task<Asset> GetAssetByIdAsync(string id)
+    public Task<Asset?> GetAssetByIdAsync(string id)
     {
-        return Task.FromResult<Asset>(new Asset());
+        return Task.FromResult<Asset>(null);
     }
 
     public Task<ICollection<Asset>> GetAssetsByCriteriaAsync(AssetCriteria criteria, int skip, int take)

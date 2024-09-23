@@ -5,7 +5,7 @@ namespace Core.Interfaces;
 
 public interface IAssetService
 {
-    Task<Asset> GetAssetByIdAsync(string id);
+    Task<Asset?> GetAssetByIdAsync(string id);
     Task<ICollection<Asset>> GetAssetsByIdsAsync(ICollection<string> ids);
     
     Task<ICollection<Asset>> GetAllAssetsAsync(int skip, int take);

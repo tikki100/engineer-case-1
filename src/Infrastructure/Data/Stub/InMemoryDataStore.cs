@@ -16,8 +16,8 @@ public class InMemoryDataStore : IDataStore
     {
         var jsonFilePath = Path.Combine(AppContext.BaseDirectory, "Data", "Stub", "StubData");
         var assetJsonFilePath = Path.Combine(jsonFilePath, "AssetMetadata.json");
-        var briefingJsonFilePath = Path.Combine(jsonFilePath, "AssetMetadata.json");
-        var contentDistributionJsonFilePath = Path.Combine(jsonFilePath, "AssetMetadata.json");
+        var briefingJsonFilePath = Path.Combine(jsonFilePath, "BriefingMetadata.json");
+        var contentDistributionJsonFilePath = Path.Combine(jsonFilePath, "ContentDistributionMetadata.json");
 
         var options = new JsonSerializerOptions
         {

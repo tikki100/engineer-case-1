@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-
+using Core.Interfaces;
 using Infrastructure.Data.Stub;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,7 +36,7 @@ if (app.Environment.IsDevelopment())
     // Load StubData
     using (var scope = app.Services.CreateScope())
     {
-        var dataLoader = scope.ServiceProvider.GetRequiredService<InMemoryDataStore>();
+        var dataLoader = scope.ServiceProvider.GetRequiredService<IDataStore>();
     }
     app.UseSwagger();
     app.UseSwaggerUI();
