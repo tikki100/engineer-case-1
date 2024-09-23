@@ -27,7 +27,7 @@ if (app.Environment.IsDevelopment())
     // Load StubData
     using (var scope = app.Services.CreateScope())
     {
-        var dataLoader = scope.ServiceProvider.GetRequiredService<StubDataLoader>();
+        var dataLoader = scope.ServiceProvider.GetRequiredService<InMemoryDataStore>();
     }
     app.UseSwagger();
     app.UseSwaggerUI();
