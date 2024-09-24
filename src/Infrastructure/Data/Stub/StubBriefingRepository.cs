@@ -8,19 +8,20 @@ namespace Infrastructure.Repositories.Stub;
 public class StubBriefingRepository : IBriefingRepository
 {
     private readonly ILogger _logger;
+    private readonly IDataStore _dataStore;
 
-    public StubBriefingRepository(ILogger<StubBriefingRepository> logger)
+    public StubBriefingRepository(ILogger<StubBriefingRepository> logger, IDataStore dataStore)
     {
         _logger = logger;
+        _dataStore = dataStore;
     }
 
-    public Task<Briefing> GetBriefingByIdAsync(string id)
+    public Task<Briefing?> GetBriefingByAssetIdAsync(string assetId)
     {
-        throw new NotImplementedException();
-    }
+        _logger.LogInformation("Getting briefing by asset id {assetId}", assetId);
 
-    public Task<ICollection<Briefing>> GetBriefingsByIdsAsync(ICollection<string> ids)
-    {
-        throw new NotImplementedException();
+        var briefing = _dataStore.Briefings.FirstOrDefault(b => b.AssetId == assetId);
+
+        return Task.FromResult(briefing);
     }
 }

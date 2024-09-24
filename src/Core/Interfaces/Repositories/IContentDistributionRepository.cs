@@ -6,4 +6,6 @@ public interface IContentDistributionRepository
 {
     Task<ContentDistribution?> GetContentDistributionByIdAsync(string id);
 
+    Task<ContentDistributionAsset?> GetContentDistributionAssetByAssetIdAsync(string assetId);
+
 }

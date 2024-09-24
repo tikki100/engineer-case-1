@@ -11,13 +11,20 @@ public class AssetsControllerTest
 {
     private readonly Mock<ILogger<AssetsController>> _mockLogger;
     private readonly Mock<IAssetService> _mockAssetService;
+    private readonly Mock<IBriefingService> _mockBriefingService;
+    private readonly Mock<IContentDistributionService> _mockContentDistributionService;
     private readonly AssetsController _controller;
 
     public AssetsControllerTest()
     {
         _mockLogger = new Mock<ILogger<AssetsController>>();
         _mockAssetService = new Mock<IAssetService>();
-        _controller = new AssetsController(_mockLogger.Object, _mockAssetService.Object);
+        _mockBriefingService = new Mock<IBriefingService>();
+        _mockContentDistributionService = new Mock<IContentDistributionService>();
+        _controller = new AssetsController(_mockLogger.Object,
+                                           _mockAssetService.Object,
+                                           _mockBriefingService.Object,
+                                           _mockContentDistributionService.Object);
     }
 
     [Fact]

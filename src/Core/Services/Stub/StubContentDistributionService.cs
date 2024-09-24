@@ -26,6 +26,11 @@ public class StubContentDistributionService : IContentDistributionService
         throw new NotImplementedException();
     }
 
+    public async Task<ContentDistributionAsset?> GetContentDistributionAssetByAssetIdAsync(string assetId)
+    {
+        return await _contentDistributionRepository.GetContentDistributionAssetByAssetIdAsync(assetId);
+    }
+
     public async Task<ContentDistribution?> GetContentDistributionByIdAsync(string id)
     {
         return await _contentDistributionRepository.GetContentDistributionByIdAsync(id);

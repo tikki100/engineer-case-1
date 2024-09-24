@@ -17,6 +17,15 @@ public class StubContentDistributionRepository : IContentDistributionRepository
         _dataStore = dataStore;
     }
 
+    public Task<ContentDistributionAsset?> GetContentDistributionAssetByAssetIdAsync(string assetId)
+    {
+        var contentDistributionAsset = _dataStore.ContentDistributions
+            .SelectMany(contentDistribution => contentDistribution.Assets)
+            .FirstOrDefault(contentDistributionAsset => contentDistributionAsset.AssetId == assetId);
+
+        return Task.FromResult(contentDistributionAsset);
+    }
+
     public Task<ContentDistribution?> GetContentDistributionByIdAsync(string id)
     {
         var contentDistribution = _dataStore.ContentDistributions

@@ -13,11 +13,19 @@ public class AssetsController : ControllerBase
 {
     private readonly ILogger<AssetsController> _logger;
     private readonly IAssetService _assetService;
+    private readonly IBriefingService _briefingService;
 
-    public AssetsController(ILogger<AssetsController> logger, IAssetService assetService)
+    private readonly IContentDistributionService _contentDistributionService;
+
+    public AssetsController(ILogger<AssetsController> logger,
+                            IAssetService assetService,
+                            IBriefingService briefingService,
+                            IContentDistributionService contentDistributionService)
     {
         _logger = logger;
         _assetService = assetService;
+        _briefingService = briefingService;
+        _contentDistributionService = contentDistributionService;
     }
 
     /// <summary>
@@ -103,5 +111,56 @@ public class AssetsController : ControllerBase
             return Problem("Unable to get the file");
         }
     }
+
+    [HttpGet("briefing/{assetId}")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(FileResult))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> GetBriefing(string assetId)
+    {
+        if (string.IsNullOrEmpty(assetId))
+        {
+            return BadRequest("Invalid asset id");
+        }
+
+        var uppercaseId = assetId.ToUpperInvariant();
+
+        try
+        {
+            var briefing = await this._briefingService.GetBriefingByIdAsync(uppercaseId);
+
+            return Ok(briefing);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Unable to retrive briefing with assetId: {uppercaseId}");
+            return Problem("Unable to get the briefing");
+        }
+    }
+
+    [HttpGet("contentdistribution/{assetId}")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(FileResult))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> GetContentDistribution(string assetId)
+    {
+        if (string.IsNullOrEmpty(assetId))
+        {
+            return BadRequest("Invalid asset id");
+        }
+
+        var uppercaseId = assetId.ToUpperInvariant();
+
+        try
+        {
+            var briefing = await this._contentDistributionService.GetContentDistributionAssetByAssetIdAsync(uppercaseId);
+
+            return Ok(briefing);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Unable to retrive briefing with assetId: {uppercaseId}");
+            return Problem("Unable to get the briefing");
+        }
+    }
+
 }
 
