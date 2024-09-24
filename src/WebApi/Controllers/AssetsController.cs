@@ -113,7 +113,7 @@ public class AssetsController : ControllerBase
     }
 
     [HttpGet("briefing/{assetId}")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(FileResult))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Briefing))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetBriefing(string assetId)
     {
@@ -127,6 +127,10 @@ public class AssetsController : ControllerBase
         try
         {
             var briefing = await this._briefingService.GetBriefingByIdAsync(uppercaseId);
+            if (briefing == null)
+            {
+                return NotFound($"No content distribution found for ID {uppercaseId}");
+            }
 
             return Ok(briefing);
         }
@@ -138,7 +142,7 @@ public class AssetsController : ControllerBase
     }
 
     [HttpGet("contentdistribution/{assetId}")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(FileResult))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ContentDistributionAsset))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetContentDistribution(string assetId)
     {
@@ -151,14 +155,18 @@ public class AssetsController : ControllerBase
 
         try
         {
-            var briefing = await this._contentDistributionService.GetContentDistributionAssetByAssetIdAsync(uppercaseId);
+            var asset = await this._contentDistributionService.GetContentDistributionAssetByAssetIdAsync(uppercaseId);
+            if (asset == null)
+            {
+                return NotFound($"No content distribution found for ID {uppercaseId}");
+            }
 
-            return Ok(briefing);
+            return Ok(asset);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"Unable to retrive briefing with assetId: {uppercaseId}");
-            return Problem("Unable to get the briefing");
+            _logger.LogError(ex, $"Unable to retrive content distribution with assetId: {uppercaseId}");
+            return Problem("Unable to get the content distribution");
         }
     }
 
