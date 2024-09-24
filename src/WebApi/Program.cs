@@ -5,6 +5,7 @@ using Infrastructure.Data.Stub;
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
+builder.Services.AddHealthChecks();
 
 // Add services to the container.
 
@@ -13,6 +14,7 @@ builder.Services.AddControllers()
     {
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });;
+    
 builder.Services.AddHttpClient();
 
 builder.Services.AddCoreServices();
@@ -29,10 +31,14 @@ builder.Services.Configure<RouteOptions>(options =>
 
 var app = builder.Build();
 
+app.MapHealthChecks("/healthz");
+
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+
+// Disabled for demo purposes
+// if (app.Environment.IsDevelopment())
+// {
     // Load StubData
     using (var scope = app.Services.CreateScope())
     {
@@ -40,7 +46,7 @@ if (app.Environment.IsDevelopment())
     }
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+// }
 
 app.UseHttpsRedirection();
 
